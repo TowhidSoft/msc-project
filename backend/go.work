@@ -1,0 +1,11 @@
+go 1.22.2
+
+use (
+	./api-gateway
+	./catalog-service
+	./inventory-service
+	./order-service
+	./payment-service
+	./shared
+	./user-service
+)
