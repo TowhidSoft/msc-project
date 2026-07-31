@@ -1,0 +1,128 @@
+services:
+  # ─── RabbitMQ (Private Service – not exposed to the internet) ────────────────
+  - type: pserv
+    name: rabbitmq
+    runtime: image
+    image:
+      url: docker.io/library/rabbitmq:3-management
+    envVars:
+      - key: RABBITMQ_DEFAULT_USER
+        value: guest
+      - key: RABBITMQ_DEFAULT_PASS
+        value: guest
+    disk:
+      name: rabbitmq-data
+      mountPath: /var/lib/rabbitmq
+      sizeGB: 1
+
+  # ─── API Gateway ─────────────────────────────────────────────────────────────
+  - type: web
+    name: api-gateway
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./api-gateway/Dockerfile
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: JWT_SECRET
+        sync: false          # Set this secret in the Render dashboard
+      - key: USER_SERVICE_URL
+        value: http://user-service:8001
+      - key: CATALOG_SERVICE_URL
+        value: http://catalog-service:8002
+      - key: INVENTORY_SERVICE_URL
+        value: http://inventory-service:8003
+      - key: ORDER_SERVICE_URL
+        value: http://order-service:8004
+      - key: PAYMENT_SERVICE_URL
+        value: http://payment-service:8005
+
+  # ─── User Service ─────────────────────────────────────────────────────────────
+  - type: pserv
+    name: user-service
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./user-service/Dockerfile
+    envVars:
+      - key: PORT
+        value: 8001
+      - key: DATABASE_URL
+        value: data/users.db
+      - key: JWT_SECRET
+        sync: false          # Set this secret in the Render dashboard
+    disk:
+      name: user-db
+      mountPath: /app/data
+      sizeGB: 1
+
+  # ─── Catalog Service ──────────────────────────────────────────────────────────
+  - type: pserv
+    name: catalog-service
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./catalog-service/Dockerfile
+    envVars:
+      - key: PORT
+        value: 8002
+      - key: DATABASE_URL
+        value: data/catalog.db
+    disk:
+      name: catalog-db
+      mountPath: /app/data
+      sizeGB: 1
+
+  # ─── Inventory Service ────────────────────────────────────────────────────────
+  - type: pserv
+    name: inventory-service
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./inventory-service/Dockerfile
+    envVars:
+      - key: PORT
+        value: 8003
+      - key: DATABASE_URL
+        value: data/inventory.db
+      - key: AMQP_URL
+        value: amqp://guest:guest@rabbitmq:5672/
+    disk:
+      name: inventory-db
+      mountPath: /app/data
+      sizeGB: 1
+
+  # ─── Order Service ────────────────────────────────────────────────────────────
+  - type: pserv
+    name: order-service
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./order-service/Dockerfile
+    envVars:
+      - key: PORT
+        value: 8004
+      - key: DATABASE_URL
+        value: data/orders.db
+      - key: AMQP_URL
+        value: amqp://guest:guest@rabbitmq:5672/
+      - key: CATALOG_SERVICE_URL
+        value: http://catalog-service:8002
+    disk:
+      name: order-db
+      mountPath: /app/data
+      sizeGB: 1
+
+  # ─── Payment Service ──────────────────────────────────────────────────────────
+  - type: pserv
+    name: payment-service
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./payment-service/Dockerfile
+    envVars:
+      - key: PORT
+        value: 8005
+      - key: DATABASE_URL
+        value: data/payments.db
+      - key: AMQP_URL
+        value: amqp://guest:guest@rabbitmq:5672/
+    disk:
+      name: payment-db
+      mountPath: /app/data
+      sizeGB: 1
