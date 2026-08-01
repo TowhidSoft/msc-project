@@ -1,7 +1,6 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import { ordersApi } from "@/lib/api";
-import { useAuthStore } from "@/store/authStore";
+import { ordersApi, paymentsApi } from "@/lib/api";
 import Navbar from "@/components/Navbar";
 import { ClipboardList, CheckCircle, XCircle, Clock, ChevronRight } from "lucide-react";
 import Link from "next/link";
@@ -23,21 +22,10 @@ const statusConfig: Record<string, { label: string; badge: string; icon: React.R
 };
 
 export default function OrdersPage() {
-  const user = useAuthStore((s) => s.user);
-
-  const { data: allOrders, isLoading } = useQuery({
+  const { data: orders, isLoading } = useQuery({
     queryKey: ["orders"],
     queryFn: () => ordersApi.getOrders().then((r) => r.data as Order[]),
   });
-
-  // NOTE: order-service's GET /orders currently returns every order in the
-  // system (it has no per-user filter). Until that's added server-side, we
-  // filter client-side so a regular user only ever sees their own orders.
-  // Admins see everything.
-  const orders =
-    user?.role === "admin"
-      ? allOrders
-      : allOrders?.filter((o) => o.user_id === user?.id);
 
   return (
     <div style={{ minHeight: "100vh" }}>

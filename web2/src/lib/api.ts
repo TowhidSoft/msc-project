@@ -2,7 +2,7 @@ import axios from "axios";
 import { useAuthStore } from "@/store/authStore";
 
 // Use relative path to hit the Next.js rewrite proxy (which forwards to the HTTP VPS API)
-const API_BASE = "/api";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 export const api = axios.create({
   baseURL: API_BASE,
@@ -32,33 +32,6 @@ api.interceptors.response.use(
   }
 );
 
-// Backend (user-service) returns: { access_token, token_type, user: { id, email, full_name, role } }
-// Frontend stores/consumes: { token, user: { id, email, name, role } }
-// This shape mismatch was the root cause of broken auth — normalize it here.
-interface BackendAuthUser {
-  id: number;
-  email: string;
-  full_name: string;
-  role: string;
-}
-interface BackendAuthResponse {
-  access_token: string;
-  token_type: string;
-  user: BackendAuthUser;
-}
-
-function normalizeAuthResponse(data: BackendAuthResponse) {
-  return {
-    token: data.access_token,
-    user: {
-      id: data.user.id,
-      email: data.user.email,
-      name: data.user.full_name,
-      role: data.user.role,
-    },
-  };
-}
-
 // ─── AUTH ────────────────────────────────────────────────
 export const authApi = {
   register: (data: { name: string; email: string; password: string }) =>
@@ -68,20 +41,8 @@ export const authApi = {
       password: data.password,
     }),
   login: (data: { email: string; password: string }) =>
-    api.post<BackendAuthResponse>("/login", data).then((res) => ({
-      ...res,
-      data: normalizeAuthResponse(res.data),
-    })),
-  me: () =>
-    api.get("/me").then((res) => ({
-      ...res,
-      data: {
-        id: res.data.id,
-        email: res.data.email,
-        name: res.data.full_name,
-        role: res.data.role,
-      },
-    })),
+    api.post("/login", data),
+  me: () => api.get("/me"),
 };
 
 // ─── CATALOG ─────────────────────────────────────────────
