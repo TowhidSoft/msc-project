@@ -19,10 +19,10 @@ spec:
           image: ecommerce-payment-service:latest
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8005
+            - containerPort: 7005
           env:
             - name: PORT
-              value: "8005"
+              value: "7005"
             - name: DATABASE_URL
               value: "payments.db"
             - name: AMQP_URL
@@ -37,8 +37,8 @@ metadata:
   name: payment-service
 spec:
   ports:
-    - port: 8005
-      targetPort: 8005
+    - port: 7005
+      targetPort: 7005
   selector:
     app: payment-service
   type: ClusterIP

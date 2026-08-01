@@ -19,10 +19,10 @@ spec:
           image: ecommerce-order-service:latest
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8004
+            - containerPort: 7004
           env:
             - name: PORT
-              value: "8004"
+              value: "7004"
             - name: DATABASE_URL
               value: "orders.db"
             - name: AMQP_URL
@@ -42,8 +42,8 @@ metadata:
   name: order-service
 spec:
   ports:
-    - port: 8004
-      targetPort: 8004
+    - port: 7004
+      targetPort: 7004
   selector:
     app: order-service
   type: ClusterIP

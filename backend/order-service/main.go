@@ -62,10 +62,10 @@ func main() {
 	router.GET("/orders", controllers.GetOrders)
 	router.GET("/orders/:id", controllers.GetOrder)
 
-	// Fetch port from environment, fallback to 8004
+	// Fetch port from environment, fallback to 7004
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8004"
+		port = "7004"
 	}
 
 	log.Printf("Order Service listening on port %s...", port)

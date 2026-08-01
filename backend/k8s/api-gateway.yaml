@@ -19,10 +19,10 @@ spec:
           image: ecommerce-api-gateway:latest
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8000
+            - containerPort: 7000
           env:
             - name: PORT
-              value: "8000"
+              value: "7000"
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
@@ -61,7 +61,7 @@ metadata:
 spec:
   ports:
     - port: 80
-      targetPort: 8000
+      targetPort: 7000
   selector:
     app: api-gateway
   type: LoadBalancer  # Exposes gateway externally

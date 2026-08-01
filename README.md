@@ -15,12 +15,12 @@
                             │ HTTP
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                  API Gateway :8000 (Go/Gin)                  │
+│                  API Gateway :7000 (Go/Gin)                  │
 │           JWT Middleware · Reverse Proxy Router              │
 └──┬──────────┬──────────┬──────────┬──────────┬─────────────┘
    │          │          │          │          │
    ▼          ▼          ▼          ▼          ▼
-:8001      :8002      :8003      :8004      :8005
+:7001      :7002      :7003      :7004      :7005
 User      Catalog   Inventory   Order     Payment
 Service   Service   Service     Service   Service
   │                    ▲          │  ▲       ▲
@@ -39,12 +39,12 @@ Service   Service   Service     Service   Service
 
 | Service | Port | Responsibility |
 |---------|------|----------------|
-| **API Gateway** | 8000 | JWT auth, reverse proxy routing |
-| **User Service** | 8001 | Registration, login, JWT, bcrypt |
-| **Catalog Service** | 8002 | Book CRUD, search, category filter |
-| **Inventory Service** | 8003 | Stock management, Saga stock reservation |
-| **Order Service** | 8004 | Order creation, Saga state machine |
-| **Payment Service** | 8005 | Mock payment processing, Saga completion |
+| **API Gateway** | 7000 | JWT auth, reverse proxy routing |
+| **User Service** | 7001 | Registration, login, JWT, bcrypt |
+| **Catalog Service** | 7002 | Book CRUD, search, category filter |
+| **Inventory Service** | 7003 | Stock management, Saga stock reservation |
+| **Order Service** | 7004 | Order creation, Saga state machine |
+| **Payment Service** | 7005 | Mock payment processing, Saga completion |
 
 ## Saga Choreography Flow
 
@@ -119,7 +119,7 @@ npm run dev
 ```
 
 Frontend is available at: **http://localhost:3000**  
-API Gateway at: **http://localhost:8000**  
+API Gateway at: **http://localhost:7000**  
 RabbitMQ Dashboard: **http://localhost:15672** (guest/guest)
 
 ### Run Backend Services Locally (without Docker)
@@ -153,7 +153,7 @@ cd backend/api-gateway       && go test -v
 
 ## API Reference
 
-All requests go through the API Gateway at `http://localhost:8000`.
+All requests go through the API Gateway at `http://localhost:7000`.
 
 ### Public Routes (no auth required)
 | Method | Path | Description |
@@ -204,12 +204,12 @@ Msc project/
 │   ├── shared/
 │   │   ├── events/events.go       # Shared Saga event definitions
 │   │   └── messaging/rabbitmq.go  # RabbitMQ EventBus wrapper
-│   ├── api-gateway/               # :8000 — JWT proxy
-│   ├── user-service/              # :8001 — Auth
-│   ├── catalog-service/           # :8002 — Books
-│   ├── inventory-service/         # :8003 — Stock
-│   ├── order-service/             # :8004 — Orders + Saga
-│   ├── payment-service/           # :8005 — Payments
+│   ├── api-gateway/               # :7000 — JWT proxy
+│   ├── user-service/              # :7001 — Auth
+│   ├── catalog-service/           # :7002 — Books
+│   ├── inventory-service/         # :7003 — Stock
+│   ├── order-service/             # :7004 — Orders + Saga
+│   ├── payment-service/           # :7005 — Payments
 │   └── k8s/                       # Kubernetes manifests
 │       ├── configmap.yaml
 │       ├── secrets.yaml

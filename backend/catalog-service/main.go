@@ -48,10 +48,10 @@ func main() {
 	router.PUT("/books/:id", controllers.UpdateBook)
 	router.DELETE("/books/:id", controllers.DeleteBook)
 
-	// Fetch port from environment, fallback to 8002
+	// Fetch port from environment, fallback to 7002
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8002"
+		port = "7002"
 	}
 
 	log.Printf("Catalog Service listening on port %s...", port)

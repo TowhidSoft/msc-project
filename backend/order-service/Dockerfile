@@ -16,6 +16,6 @@ WORKDIR /app
 
 COPY --from=builder /app/order-service .
 
-EXPOSE 8004
+EXPOSE 7004
 
 CMD ["./order-service"]

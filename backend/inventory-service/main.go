@@ -65,10 +65,10 @@ func main() {
 	router.GET("/inventory/:book_id", controllers.GetStock)
 	router.POST("/inventory/restock", controllers.Restock)
 
-	// Fetch port from environment, fallback to 8003
+	// Fetch port from environment, fallback to 7003
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8003"
+		port = "7003"
 	}
 
 	log.Printf("Inventory Service listening on port %s...", port)

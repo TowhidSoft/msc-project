@@ -16,6 +16,6 @@ WORKDIR /app
 
 COPY --from=builder /app/inventory-service .
 
-EXPOSE 8003
+EXPOSE 7003
 
 CMD ["./inventory-service"]

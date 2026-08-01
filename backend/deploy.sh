@@ -48,6 +48,6 @@ docker compose -f "$COMPOSE_FILE" ps
 echo ""
 echo "======================================"
 echo "  Deployment complete!"
-echo "  API Gateway: http://$(hostname -I | awk '{print $1}'):8000"
+echo "  API Gateway: http://$(hostname -I | awk '{print $1}'):7000"
 echo "  Nginx (port 80): http://$(hostname -I | awk '{print $1}')"
 echo "======================================"

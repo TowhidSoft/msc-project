@@ -50,7 +50,7 @@ export default function CartPage() {
       <Navbar />
       <div style={{ maxWidth: "900px", margin: "0 auto", padding: "40px 24px" }}>
         <div className="page-enter">
-          <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "8px" }}>
+          <h1 style={{ fontSize: "2rem", fontWeight: 700, marginBottom: "8px" }}>
             <span className="gradient-text">Shopping Cart</span>
           </h1>
           <p style={{ color: "var(--text-secondary)", marginBottom: "32px" }}>

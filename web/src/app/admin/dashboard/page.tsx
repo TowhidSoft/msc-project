@@ -62,7 +62,7 @@ export default function AdminDashboardPage() {
       <Navbar />
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "40px 24px" }}>
         <div className="page-enter">
-          <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "8px" }}>
+          <h1 style={{ fontSize: "2rem", fontWeight: 700, marginBottom: "8px" }}>
             <span className="gradient-text">Admin Dashboard</span>
           </h1>
           <p style={{ color: "var(--text-secondary)", marginBottom: "36px" }}>
@@ -76,7 +76,7 @@ export default function AdminDashboardPage() {
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                   <div>
                     <p style={{ color: "var(--text-secondary)", fontSize: "0.8rem", marginBottom: "8px", textTransform: "uppercase", letterSpacing: "0.05em" }}>{label}</p>
-                    <p style={{ fontSize: "2rem", fontWeight: 800, color }}>{value}</p>
+                    <p style={{ fontSize: "2rem", fontWeight: 700, color }}>{value}</p>
                   </div>
                   <div style={{ width: "44px", height: "44px", borderRadius: "12px", background: bg, display: "flex", alignItems: "center", justifyContent: "center", color }}>
                     {icon}

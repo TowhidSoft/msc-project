@@ -24,15 +24,15 @@ services:
       dockerfile: api-gateway/Dockerfile
     container_name: api-gateway
     ports:
-      - "8000:8000"
+      - "7000:7000"
     environment:
-      - PORT=8000
+      - PORT=7000
       - JWT_SECRET=super-secret-msc-project-key-value
-      - USER_SERVICE_URL=http://user-service:8001
-      - CATALOG_SERVICE_URL=http://catalog-service:8002
-      - INVENTORY_SERVICE_URL=http://inventory-service:8003
-      - ORDER_SERVICE_URL=http://order-service:8004
-      - PAYMENT_SERVICE_URL=http://payment-service:8005
+      - USER_SERVICE_URL=http://user-service:7001
+      - CATALOG_SERVICE_URL=http://catalog-service:7002
+      - INVENTORY_SERVICE_URL=http://inventory-service:7003
+      - ORDER_SERVICE_URL=http://order-service:7004
+      - PAYMENT_SERVICE_URL=http://payment-service:7005
     depends_on:
       - user-service
       - catalog-service
@@ -46,13 +46,13 @@ services:
       dockerfile: user-service/Dockerfile
     container_name: user-service
     environment:
-      - PORT=8001
+      - PORT=7001
       - DATABASE_URL=data/users.db
       - JWT_SECRET=super-secret-msc-project-key-value
     volumes:
       - user_db_vol:/app/data
     ports:
-      - "8001:8001"
+      - "7001:7001"
 
   catalog-service:
     build:
@@ -60,12 +60,12 @@ services:
       dockerfile: catalog-service/Dockerfile
     container_name: catalog-service
     environment:
-      - PORT=8002
+      - PORT=7002
       - DATABASE_URL=data/catalog.db
     volumes:
       - catalog_db_vol:/app/data
     ports:
-      - "8002:8002"
+      - "7002:7002"
 
   inventory-service:
     build:
@@ -73,7 +73,7 @@ services:
       dockerfile: inventory-service/Dockerfile
     container_name: inventory-service
     environment:
-      - PORT=8003
+      - PORT=7003
       - DATABASE_URL=data/inventory.db
       - AMQP_URL=amqp://guest:guest@rabbitmq:5672/
     volumes:
@@ -82,7 +82,7 @@ services:
       rabbitmq:
         condition: service_healthy
     ports:
-      - "8003:8003"
+      - "7003:7003"
 
   order-service:
     build:
@@ -90,10 +90,10 @@ services:
       dockerfile: order-service/Dockerfile
     container_name: order-service
     environment:
-      - PORT=8004
+      - PORT=7004
       - DATABASE_URL=data/orders.db
       - AMQP_URL=amqp://guest:guest@rabbitmq:5672/
-      - CATALOG_SERVICE_URL=http://catalog-service:8002
+      - CATALOG_SERVICE_URL=http://catalog-service:7002
     volumes:
       - order_db_vol:/app/data
     depends_on:
@@ -102,7 +102,7 @@ services:
       catalog-service:
         condition: service_started
     ports:
-      - "8004:8004"
+      - "7004:7004"
 
   payment-service:
     build:
@@ -110,7 +110,7 @@ services:
       dockerfile: payment-service/Dockerfile
     container_name: payment-service
     environment:
-      - PORT=8005
+      - PORT=7005
       - DATABASE_URL=data/payments.db
       - AMQP_URL=amqp://guest:guest@rabbitmq:5672/
     volumes:
@@ -119,7 +119,7 @@ services:
       rabbitmq:
         condition: service_healthy
     ports:
-      - "8005:8005"
+      - "7005:7005"
 
 volumes:
   rabbitmq_data:

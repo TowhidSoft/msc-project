@@ -54,7 +54,7 @@ export default function CatalogPage() {
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "40px 24px" }}>
         {/* Hero */}
         <div style={{ textAlign: "center", marginBottom: "48px" }} className="page-enter">
-          <h1 style={{ fontSize: "2.8rem", fontWeight: 800, marginBottom: "12px", lineHeight: 1.2 }}>
+          <h1 style={{ fontSize: "2.8rem", fontWeight: 700, marginBottom: "12px", lineHeight: 1.2 }}>
             Discover Your Next{" "}
             <span className="gradient-text">Great Read</span>
           </h1>

@@ -47,7 +47,7 @@ func CreateOrder(c *gin.Context) {
 	// Fetch book details from Catalog Service
 	catalogURL := os.Getenv("CATALOG_SERVICE_URL")
 	if catalogURL == "" {
-		catalogURL = "http://localhost:8002"
+		catalogURL = "http://localhost:7002"
 	}
 
 	resp, err := http.Get(fmt.Sprintf("%s/books/%d", catalogURL, input.BookID))

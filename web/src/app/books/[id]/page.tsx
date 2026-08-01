@@ -78,7 +78,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ id: strin
             <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
               <div>
                 <span className="badge badge-purple" style={{ marginBottom: "12px" }}>{book.category}</span>
-                <h1 style={{ fontSize: "2rem", fontWeight: 800, lineHeight: 1.2, marginBottom: "8px" }}>{book.title}</h1>
+                <h1 style={{ fontSize: "2rem", fontWeight: 700, lineHeight: 1.2, marginBottom: "8px" }}>{book.title}</h1>
                 <p style={{ color: "var(--text-secondary)", fontSize: "1rem" }}>by <strong style={{ color: "var(--text-primary)" }}>{book.author}</strong></p>
               </div>
 
@@ -111,7 +111,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ id: strin
               >
                 <div>
                   <p style={{ color: "var(--text-secondary)", fontSize: "0.8rem", marginBottom: "4px" }}>Price</p>
-                  <p style={{ fontSize: "2rem", fontWeight: 800 }}>${book.price.toFixed(2)}</p>
+                  <p style={{ fontSize: "2rem", fontWeight: 700 }}>${book.price.toFixed(2)}</p>
                 </div>
                 <button
                   className="btn-primary"

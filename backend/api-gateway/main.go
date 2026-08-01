@@ -108,27 +108,27 @@ func main() {
 	// Target URLs for upstream services (Docker compose internal DNS / local ports)
 	userServiceURL := os.Getenv("USER_SERVICE_URL")
 	if userServiceURL == "" {
-		userServiceURL = "http://localhost:8001"
+		userServiceURL = "http://localhost:7001"
 	}
 
 	catalogServiceURL := os.Getenv("CATALOG_SERVICE_URL")
 	if catalogServiceURL == "" {
-		catalogServiceURL = "http://localhost:8002"
+		catalogServiceURL = "http://localhost:7002"
 	}
 
 	inventoryServiceURL := os.Getenv("INVENTORY_SERVICE_URL")
 	if inventoryServiceURL == "" {
-		inventoryServiceURL = "http://localhost:8003"
+		inventoryServiceURL = "http://localhost:7003"
 	}
 
 	orderServiceURL := os.Getenv("ORDER_SERVICE_URL")
 	if orderServiceURL == "" {
-		orderServiceURL = "http://localhost:8004"
+		orderServiceURL = "http://localhost:7004"
 	}
 
 	paymentServiceURL := os.Getenv("PAYMENT_SERVICE_URL")
 	if paymentServiceURL == "" {
-		paymentServiceURL = "http://localhost:8005"
+		paymentServiceURL = "http://localhost:7005"
 	}
 
 	router := gin.Default()
@@ -178,7 +178,7 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8000"
+		port = "7000"
 	}
 
 	log.Printf("API Gateway listening on port %s...", port)

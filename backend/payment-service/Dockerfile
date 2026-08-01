@@ -16,6 +16,6 @@ WORKDIR /app
 
 COPY --from=builder /app/payment-service .
 
-EXPOSE 8005
+EXPOSE 7005
 
 CMD ["./payment-service"]

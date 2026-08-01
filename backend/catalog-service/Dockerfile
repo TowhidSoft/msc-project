@@ -16,6 +16,6 @@ WORKDIR /app
 
 COPY --from=builder /app/catalog-service .
 
-EXPOSE 8002
+EXPOSE 7002
 
 CMD ["./catalog-service"]

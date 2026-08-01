@@ -19,10 +19,10 @@ spec:
           image: ecommerce-inventory-service:latest
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8003
+            - containerPort: 7003
           env:
             - name: PORT
-              value: "8003"
+              value: "7003"
             - name: DATABASE_URL
               value: "inventory.db"
             - name: AMQP_URL
@@ -37,8 +37,8 @@ metadata:
   name: inventory-service
 spec:
   ports:
-    - port: 8003
-      targetPort: 8003
+    - port: 7003
+      targetPort: 7003
   selector:
     app: inventory-service
   type: ClusterIP

@@ -16,6 +16,6 @@ WORKDIR /app
 
 COPY --from=builder /app/api-gateway .
 
-EXPOSE 8000
+EXPOSE 7000
 
 CMD ["./api-gateway"]

@@ -19,10 +19,10 @@ spec:
           image: ecommerce-catalog-service:latest
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8002
+            - containerPort: 7002
           env:
             - name: PORT
-              value: "8002"
+              value: "7002"
             - name: DATABASE_URL
               value: "catalog.db"
 ---
@@ -32,8 +32,8 @@ metadata:
   name: catalog-service
 spec:
   ports:
-    - port: 8002
-      targetPort: 8002
+    - port: 7002
+      targetPort: 7002
   selector:
     app: catalog-service
   type: ClusterIP

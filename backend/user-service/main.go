@@ -43,10 +43,10 @@ func main() {
 	router.POST("/login", controllers.Login)
 	router.GET("/me", controllers.GetProfile)
 
-	// Fetch port from environment, fallback to 8001
+	// Fetch port from environment, fallback to 7001
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8001"
+		port = "7001"
 	}
 
 	log.Printf("User Service listening on port %s...", port)

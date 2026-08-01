@@ -52,7 +52,7 @@ export default function InventoryPage() {
       <Navbar />
       <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "40px 24px" }}>
         <div className="page-enter">
-          <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "8px" }}>
+          <h1 style={{ fontSize: "2rem", fontWeight: 700, marginBottom: "8px" }}>
             <span className="gradient-text">Inventory Management</span>
           </h1>
           <p style={{ color: "var(--text-secondary)", marginBottom: "36px" }}>
@@ -73,7 +73,7 @@ export default function InventoryPage() {
                   </div>
                   <span style={{ color: "var(--text-secondary)", fontSize: "0.875rem" }}>{label}</span>
                 </div>
-                <p style={{ fontSize: "2rem", fontWeight: 800 }}>{value}</p>
+                <p style={{ fontSize: "2rem", fontWeight: 700 }}>{value}</p>
               </div>
             ))}
           </div>

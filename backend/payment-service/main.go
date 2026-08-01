@@ -60,10 +60,10 @@ func main() {
 	router.GET("/payments", controllers.GetPayments)
 	router.GET("/payments/:order_id", controllers.GetPaymentByOrderID)
 
-	// Fetch port from environment, fallback to 8005
+	// Fetch port from environment, fallback to 7005
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8005"
+		port = "7005"
 	}
 
 	log.Printf("Payment Service listening on port %s...", port)

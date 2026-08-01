@@ -75,7 +75,7 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
             <div className="glass-card" style={{ padding: "28px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "20px" }}>
                 <div>
-                  <h1 style={{ fontSize: "1.4rem", fontWeight: 800, marginBottom: "6px" }}>Order #{order.id}</h1>
+                  <h1 style={{ fontSize: "1.4rem", fontWeight: 700, marginBottom: "6px" }}>Order #{order.id}</h1>
                   <p style={{ color: "var(--text-secondary)", fontSize: "0.875rem" }}>
                     Placed on {new Date(order.created_at).toLocaleString()}
                   </p>
