@@ -1,12 +1,9 @@
-version: '3.8'
 
 services:
   rabbitmq:
     image: rabbitmq:3-management
     container_name: amqp-broker
-    ports:
-      - "5672:5672"
-      - "15672:15672"
+    # No host ports — RabbitMQ is only reachable inside Docker network
     environment:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
@@ -53,8 +50,7 @@ services:
       - JWT_SECRET=${JWT_SECRET}
     volumes:
       - user_db_vol:/app/data
-    ports:
-      - "127.0.0.1:8001:8001"
+    # No host ports — only reachable by api-gateway inside Docker network
     restart: unless-stopped
 
   catalog-service:
@@ -67,8 +63,7 @@ services:
       - DATABASE_URL=data/catalog.db
     volumes:
       - catalog_db_vol:/app/data
-    ports:
-      - "127.0.0.1:8002:8002"
+    # No host ports — only reachable inside Docker network
     restart: unless-stopped
 
   inventory-service:
@@ -85,8 +80,7 @@ services:
     depends_on:
       rabbitmq:
         condition: service_healthy
-    ports:
-      - "127.0.0.1:8003:8003"
+    # No host ports — only reachable inside Docker network
     restart: unless-stopped
 
   order-service:
@@ -106,8 +100,7 @@ services:
         condition: service_healthy
       catalog-service:
         condition: service_started
-    ports:
-      - "127.0.0.1:8004:8004"
+    # No host ports — only reachable inside Docker network
     restart: unless-stopped
 
   payment-service:
@@ -124,8 +117,7 @@ services:
     depends_on:
       rabbitmq:
         condition: service_healthy
-    ports:
-      - "127.0.0.1:8005:8005"
+    # No host ports — only reachable inside Docker network
     restart: unless-stopped
 
 volumes:
