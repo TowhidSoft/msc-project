@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useAuthStore } from "@/store/authStore";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:7000";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://89.116.122.90:7000";
 
 export const api = axios.create({
   baseURL: API_BASE,
