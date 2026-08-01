@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useAuthStore } from "@/store/authStore";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://89.116.122.90:7000";
+// Use relative path to hit the Next.js rewrite proxy (which forwards to the HTTP VPS API)
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 export const api = axios.create({
   baseURL: API_BASE,
